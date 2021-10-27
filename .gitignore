@@ -1,3 +1,8 @@
+# Node
 node_modules/
-lib
+
+# Cleo
 config.json
+
+#MacOS
+.DS_Store
