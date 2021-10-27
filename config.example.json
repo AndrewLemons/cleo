@@ -1,0 +1,14 @@
+{
+	"port": "80",
+	"printers": [
+		{
+			"name": "Printer 1",
+			"host": "0.0.0.0",
+			"apiKey": "ABCDEFG"
+		}
+	],
+	"applications": {
+		"Ultimaker Cura": "/Ultimaker Cura.app",
+		"OpenSCAD": "/OpenSCAD.app"
+	}
+}
