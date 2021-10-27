@@ -23,9 +23,9 @@ async function uploadFile({ sourceFile, fileName }, { host, apiKey }) {
 			"Content-Length": form.getLengthSync(),
 			"X-Api-Key": apiKey,
 		},
+		maxContentLength: Infinity,
+		maxBodyLength: Infinity
 	});
-
-	console.log(response);
 }
 
 async function printFile({ location, file }, { host, apiKey }) {
@@ -41,8 +41,6 @@ async function printFile({ location, file }, { host, apiKey }) {
 			},
 		}
 	);
-
-	console.log(response);
 }
 
 module.exports = {
