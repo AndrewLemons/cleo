@@ -24,7 +24,7 @@ async function uploadFile({ sourceFile, fileName }, { host, apiKey }) {
 			"X-Api-Key": apiKey,
 		},
 		maxContentLength: Infinity,
-		maxBodyLength: Infinity
+		maxBodyLength: Infinity,
 	});
 }
 
