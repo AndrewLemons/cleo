@@ -16,6 +16,8 @@ async function print(projectId, fileName) {
 
 	if (selectedPrinter == null) throw new Error("No printer available");
 
+	console.log(`[${projectId}]`, "Printing");
+
 	await OctoPrint.uploadFile(
 		{
 			sourceFile: path.join(ProjectService.getProjectPath(projectId), fileName),
