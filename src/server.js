@@ -7,10 +7,12 @@ const { upload } = require("./middleware/multer");
 
 const app = express();
 
+app.set("views", path.join(__dirname, "/views"));
+app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, "../public")));
 
 app.get("/", (req, res) => {
-	res.sendFile(__dirname + "/views/index.html");
+	res.render("index");
 });
 
 app.post("/", upload.single("model"), async (req, res) => {
@@ -30,6 +32,10 @@ app.post("/", upload.single("model"), async (req, res) => {
 		console.log(err);
 		res.sendFile(__dirname + "/views/failure.html");
 	}
+});
+
+app.get("/info", (req, res) => {
+	res.render("info");
 });
 
 module.exports = app;

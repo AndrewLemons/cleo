@@ -1,0 +1,21 @@
+extends layouts/main
+
+block content
+	main.hero.is-link.is-fullheight
+		.hero-body.is-justify-content-center
+			form.box(action="/", method="post", enctype="multipart/form-data")
+				.field.has-text-centered
+					img(src="cleo.svg")
+				.field
+					.control
+						.file.is-boxed.has-name
+							label.file-label
+								input.file-input(type="file", accept=".stl", name="model", required)
+								span.file-cta
+									span.file-icon
+										i.fas.fa-upload
+									span.file-label Choose a model...
+								span.file-name
+				.field
+					.control
+						button.button.is-fullwidth(type="submit", onclick="showLoadingModal()") Print
