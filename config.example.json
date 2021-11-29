@@ -7,6 +7,8 @@
 			"apiKey": "ABCDEFG"
 		}
 	],
+	"maxCubicSize": "100",
+	"maxProjectAge": 86400000,
 	"applications": {
 		"Ultimaker Cura": "/Ultimaker Cura.app",
 		"OpenSCAD": "/OpenSCAD.app"

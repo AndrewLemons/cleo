@@ -30,4 +30,5 @@ module.exports = {
 	getProjectPath,
 	createProject,
 	deleteProject,
+	TMP_DIR,
 };

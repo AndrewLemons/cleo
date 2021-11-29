@@ -9,33 +9,54 @@ const app = express();
 
 app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "pug");
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.resolve(__dirname, "../public")));
+app.use(express.static(path.resolve(__dirname, "../app/dist")));
 
-app.get("/", (req, res) => {
-	res.render("index");
-});
+app.post("/api/upload", upload.single("model"), async (req, res) => {
+	let currentFileName = req.file.filename;
 
-app.post("/", upload.single("model"), async (req, res) => {
 	try {
-		let currentFileName = req.file.filename;
 		currentFileName = await ScaleService.scale(
 			req.file.projectId,
 			currentFileName
 		);
+	} catch {
+		return res.status(400).json({
+			error: {
+				title: "Invalid Model",
+				message: "The model you provided is not in the correct format."
+			},
+		});
+	}
+
+	try {
 		currentFileName = await SliceService.slice(
 			req.file.projectId,
 			currentFileName
 		);
-		await DistributionService.print(req.file.projectId, currentFileName);
-		res.sendFile(__dirname + "/views/success.html");
-	} catch (err) {
-		console.log(err);
-		res.sendFile(__dirname + "/views/failure.html");
+	} catch {
+		return res.status(400).json({
+			error: {
+				title: "Slice Error",
+				message: "The model you provided could not be sliced."
+			},
+		});
 	}
-});
 
-app.get("/info", (req, res) => {
-	res.render("info");
+	try {
+		await DistributionService.print(req.file.projectId, currentFileName);
+	} catch {
+		return res.status(400).json({
+			error: {
+				title: "Distribution Error",
+				message: "Your model could not be given to a printer. Are they all busy?"
+			},
+		});
+	}
+
+	res.json({
+		success: true,
+	});
 });
 
 module.exports = app;
