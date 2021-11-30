@@ -18,8 +18,6 @@ async function scale(project, inputFile) {
 	if (largestDim > 200) {
 		scale = maxCubicSize / largestDim;
 	}
-	console.log(largestDim)
-	console.log(scale)
 
 	fse.writeFile(
 		path.join(projectPath, "scale.scad"),
