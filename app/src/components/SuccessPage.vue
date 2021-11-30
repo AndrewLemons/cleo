@@ -4,7 +4,7 @@
 		<p class="subtitle has-text-black">
 			Your print is in progress and will be on its way soon.
 		</p>
-		<button class="button is-fullwidth is-link" @click="$emit('close')">
+		<button class="button is-fullwidth is-link" @click="$router.replace({ name: 'print' })">
 			Ok
 		</button>
 	</div>
@@ -12,6 +12,6 @@
 
 <script>
 export default {
-	name: "SuccessMenu"
+	name: "SuccessPage"
 };
 </script>

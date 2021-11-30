@@ -13,7 +13,7 @@
 
 <script>
 export default {
-	name: "LoadingMenu",
+	name: "LoadingOverlay",
 	props: ["isActive"]
 };
 </script>

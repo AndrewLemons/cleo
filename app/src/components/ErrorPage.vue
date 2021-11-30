@@ -10,7 +10,7 @@
 
 <script>
 export default {
-	name: "ErrorMenu",
+	name: "ErrorPage",
 	emits: ["close"],
 	props: ["title", "message"],
 };
